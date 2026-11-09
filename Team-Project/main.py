@@ -2,9 +2,10 @@ from pathlib import Path
 from team_project import get_file_category
 from analyzer import create_folders, confirm, move_files, print_summary
 
+
 def main():
-    # Papka manzilini to'g'ridan-to'g'ri shu yerga yozib qo'yamiz (input yo'q)
-    folder = Path("practice_folder") # Kerakli papka nomini shu yerga yozasiz
+    # Papka yo'lini foydalanuvchidan so'raymiz
+    folder = Path(input("Papka yo'lini kiriting: ").strip().strip('"'))
 
     if not folder.exists() or not folder.is_dir():
         print(f"Xato: '{folder}' papkasi mavjud emas!")
@@ -22,7 +23,10 @@ def main():
         print("Diqqat: Tanlangan papka bo'sh!")
         return
 
+    # Oldindan ko'rish (preview)
     print(f"Topildi: {len(plan)} ta fayl saralashga tayyor.")
+    for file_path, category in plan:
+        print(f"{file_path.name} -> {category}/")
 
     # Tasdiqlatib va xavfsiz ko'chiramiz
     if confirm():
@@ -31,6 +35,7 @@ def main():
         print_summary(moved, skipped)
     else:
         print("Cancelled. Nothing was changed.")
+
 
 if __name__ == "__main__":
     main()

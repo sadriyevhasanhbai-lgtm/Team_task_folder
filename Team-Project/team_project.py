@@ -105,5 +105,5 @@ def get_file_category(extension):
         return "Other"
 
 
-# Funksiyani ishga tushiramiz
-organize_file()
+if __name__ == "__main__":
+    organize_file()
